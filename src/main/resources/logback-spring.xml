@@ -1,54 +1,63 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <configuration>
+    <!--定义日志格式应用springboot默认的格式-->
+    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
 
-    <appender name="consoleLog" class="ch.qos.logback.core.ConsoleAppender">
-        <layout class="ch.qos.logback.classic.PatternLayout">
-            <pattern>
-                %d - %msg%n
-            </pattern>
-        </layout>
-    </appender>
+    <!--定义日志存放的位置，默认存放在项目启动的相对路径的目录-->
+    <springProperty scope="context" name="LOG_PATH" source="log.path" defaultValue="sell-log"/>
 
-    <appender name="fileInfoLog" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <filter class="ch.qos.logback.classic.filter.LevelFilter">
-            <level>ERROR</level>
-            <onMatch>DENY</onMatch>
-            <onMismatch>ACCEPT</onMismatch>
-        </filter>
-        <encoder>
-            <pattern>
-                %msg%n
-            </pattern>
-        </encoder>
-        <!--滚动策略-->
-        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <!--路径-->
-            <fileNamePattern>D:/log/sell/info.%d.log</fileNamePattern>
-        </rollingPolicy>
-    </appender>
+    <!--控制台显示-->
+    <springProfile name="local">
+        <appender name="consoleLog" class="ch.qos.logback.core.ConsoleAppender">
+            <encoder>
+                <pattern>${CONSOLE_LOG_PATTERN}</pattern>
+                <charset>utf-8</charset>
+            </encoder>
+        </appender>
 
+        <!--info日志记录-->
+        <appender name="fileInfoLog" class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <file>${LOG_PATH}/log_info.log</file>
+            <append>true</append>
+            <encoder>
+                <pattern>${CONSOLE_LOG_PATTERN}</pattern>
+                <charset class="java.nio.charset.Charset">UTF-8</charset>
+            </encoder>
+            <!--滚动策略-->
+            <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+                <!--路径-->
+                <fileNamePattern>${LOG_PATH}/info/log-info-%d{yyy-MM-dd}.log</fileNamePattern>
+            </rollingPolicy>
+            <filter class="ch.qos.logback.classic.filter.LevelFilter">
+                <level>ERROR</level>
+                <onMatch>DENY</onMatch>
+                <onMismatch>ACCEPT</onMismatch>
+            </filter>
+        </appender>
 
-    <appender name="fileErrorLog" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
-            <level>ERROR</level>
-        </filter>
-        <encoder>
-            <pattern>
-                %msg%n
-            </pattern>
-        </encoder>
-        <!--滚动策略-->
-        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <!--路径-->
-            <fileNamePattern>D:/log/sell/error.%d.log</fileNamePattern>
-        </rollingPolicy>
-    </appender>
+        <!--error日志记录-->
+        <appender name="fileErrorLog" class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <file>${LOG_PATH}/log_error.log</file>
+            <!--滚动策略-->
+            <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+                <!--路径-->
+                <fileNamePattern>${LOG_PATH}/error/log-error-%d{yyy-MM-dd}.log</fileNamePattern>
+            </rollingPolicy>
+            <append>true</append>
+            <encoder>
+                <pattern>${CONSOLE_LOG_PATTERN}</pattern>
+                <charset class="java.nio.charset.Charset">UTF-8</charset>
+            </encoder>
+            <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+                <level>ERROR</level>
+            </filter>
+        </appender>
 
-    <root level="info">
-        <appender-ref ref="consoleLog" />
-        <appender-ref ref="fileInfoLog" />
-        <appender-ref ref="fileErrorLog" />
-    </root>
-
+        <root level="info">
+            <appender-ref ref="consoleLog"/>
+            <appender-ref ref="fileInfoLog"/>
+            <appender-ref ref="fileErrorLog"/>
+        </root>
+    </springProfile>
 </configuration>

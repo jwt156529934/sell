@@ -38,23 +38,23 @@
         </dependency>
 
         <!--mysql连接驱动-->
-        <!--<dependency>-->
-            <!--<groupId>mysql</groupId>-->
-            <!--<artifactId>mysql-connector-java</artifactId>-->
-        <!--</dependency>-->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
 
         <!--引入springDataJpa-->
-        <!--<dependency>-->
-            <!--<groupId>org.springframework.boot</groupId>-->
-            <!--<artifactId>spring-boot-starter-data-jpa</artifactId>-->
-        <!--</dependency>-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
 
         <!-- 引入mybatis plus -->
-        <!--<dependency>-->
-            <!--<groupId>com.baomidou</groupId>-->
-            <!--<artifactId>mybatis-plus-boot-starter</artifactId>-->
-            <!--<version>3.0.6</version>-->
-        <!--</dependency>-->
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
+            <version>3.0.6</version>
+        </dependency>
 
         <!--lombok插件-->
         <dependency>
@@ -63,54 +63,54 @@
         </dependency>
 
         <!--谷歌json工具-->
-        <!--<dependency>-->
-            <!--<groupId>com.google.code.gson</groupId>-->
-            <!--<artifactId>gson</artifactId>-->
-        <!--</dependency>-->
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+        </dependency>
 
         <!--微信公众号开发sdk-->
-        <!--<dependency>-->
-            <!--<groupId>com.github.binarywang</groupId>-->
-            <!--<artifactId>weixin-java-mp</artifactId>-->
-            <!--<version>2.7.0</version>-->
-        <!--</dependency>-->
+        <dependency>
+            <groupId>com.github.binarywang</groupId>
+            <artifactId>weixin-java-mp</artifactId>
+            <version>2.7.0</version>
+        </dependency>
 
         <!--微信支付-->
-        <!--<dependency>-->
-            <!--<groupId>cn.springboot</groupId>-->
-            <!--<artifactId>best-pay-sdk</artifactId>-->
-            <!--<version>1.1.0</version>-->
-        <!--</dependency>-->
+        <dependency>
+            <groupId>cn.springboot</groupId>
+            <artifactId>best-pay-sdk</artifactId>
+            <version>1.1.0</version>
+        </dependency>
 
         <!--freemarker模板引擎-->
-        <!--<dependency>-->
-            <!--<groupId>org.springframework.boot</groupId>-->
-            <!--<artifactId>spring-boot-starter-freemarker</artifactId>-->
-        <!--</dependency>-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-freemarker</artifactId>
+        </dependency>
 
         <!--Redis-->
-        <!--<dependency>-->
-            <!--<groupId>org.springframework.boot</groupId>-->
-            <!--<artifactId>spring-boot-starter-data-redis</artifactId>-->
-        <!--</dependency>-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
 
         <!--websocket-->
-        <!--<dependency>-->
-            <!--<groupId>org.springframework.boot</groupId>-->
-            <!--<artifactId>spring-boot-starter-websocket</artifactId>-->
-        <!--</dependency>-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-websocket</artifactId>
+        </dependency>
 
         <!--swagger接口文档工具-->
-        <!--<dependency>-->
-            <!--<groupId>io.springfox</groupId>-->
-            <!--<artifactId>springfox-swagger2</artifactId>-->
-            <!--<version>${springfox-swagger.version}</version>-->
-        <!--</dependency>-->
-        <!--<dependency>-->
-            <!--<groupId>io.springfox</groupId>-->
-            <!--<artifactId>springfox-swagger-ui</artifactId>-->
-            <!--<version>${springfox-swagger.version}</version>-->
-        <!--</dependency>-->
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>${springfox-swagger.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>${springfox-swagger.version}</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -121,6 +121,4 @@
             </plugin>
         </plugins>
     </build>
-
-
 </project>
