@@ -4,6 +4,7 @@ import com.jwt.sell.model.ProductCategory;
 import com.jwt.sell.repository.ProductCategoryRepository;
 import com.jwt.sell.service.ProductCategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -14,6 +15,7 @@ import java.util.List;
  * @Description: TODO
  * @date 2020/3/1521:09
  */
+@Service
 public class ProductCategoryServiceImpl implements ProductCategoryService {
     @Autowired
     private ProductCategoryRepository repository;

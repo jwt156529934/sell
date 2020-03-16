@@ -45,7 +45,7 @@ public class ProductInfo {
     /**
      * 描述
      */
-    private String prodDescription;
+    private String productDescription;
 
     /**
      * 小图

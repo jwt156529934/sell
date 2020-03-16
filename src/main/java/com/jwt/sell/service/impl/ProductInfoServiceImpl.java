@@ -7,6 +7,7 @@ import com.jwt.sell.service.ProductInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -17,6 +18,7 @@ import java.util.List;
  * @Description: TODO
  * @date 2020/3/1521:09
  */
+@Service
 public class ProductInfoServiceImpl implements ProductInfoService {
     @Autowired
     private ProductInfoRepository repository;
