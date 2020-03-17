@@ -16,7 +16,7 @@ import java.util.List;
  */
 public interface ProductInfoService {
 
-    ProductInfo findOne(String ProductId);
+    ProductInfo findOne(String productId);
 
     List<ProductInfo> findUpAll();
 

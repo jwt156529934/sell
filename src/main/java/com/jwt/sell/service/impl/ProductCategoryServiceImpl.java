@@ -12,7 +12,6 @@ import java.util.List;
  * @author wuli涛涛
  * @Title: ProductCategoryServiceImpl
  * @ProjectName sell
- * @Description: TODO
  * @date 2020/3/1521:09
  */
 @Service

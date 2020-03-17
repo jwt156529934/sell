@@ -6,7 +6,6 @@ import lombok.Getter;
  * @author wuli涛涛
  * @Title: ProductStatusEnum
  * @ProjectName sell
- * @Description: TODO
  * @date 2020/3/1521:36
  */
 @Getter
