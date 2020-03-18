@@ -6,6 +6,7 @@ import com.jwt.sell.dto.OrderDTO;
 import com.jwt.sell.enums.ResultEnum;
 import com.jwt.sell.exception.SellException;
 import com.jwt.sell.form.OrderForm;
+import com.jwt.sell.service.BuyerService;
 import com.jwt.sell.service.OrderService;
 import com.jwt.sell.utils.ResultVOUtil;
 import io.swagger.annotations.Api;
@@ -13,14 +14,20 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.util.CollectionUtils;
+import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -30,6 +37,9 @@ import java.util.Map;
 public class BuyerOrderController {
     @Autowired
     private OrderService orderService;
+
+    @Autowired
+    private BuyerService buyerService;
 
     /**
      * 创建订单
@@ -57,24 +67,50 @@ public class BuyerOrderController {
 
     /**
      * 订单列表
-     * @param orderDTO
+     * @param openid
+     * @param page
+     * @param size
      * @return
      */
-
+    @GetMapping(value = "/list")
+    public ResultVO<List<OrderDTO>> list(@RequestParam("openid") String openid,
+                                          @RequestParam(value = "page",defaultValue = "1") Integer page,
+                                          @RequestParam(value = "size",defaultValue = "10") Integer size){
+        if(StringUtils.isEmpty(openid)){
+            log.error("【查询订单列表】openid为空");
+            throw new SellException(ResultEnum.PARAM_ERROR);
+        }
+        PageRequest request = new PageRequest(page-1,size);
+        Page<OrderDTO> orderDTOPage = orderService.findList(openid, request);
+        return ResultVOUtil.success(orderDTOPage.getContent());
+    }
     /**
-     * 创建订单
-     * @param orderDTO
+     * 查询订单详情
+     * @param openid
+     * @param orderId
      * @return
      */
+    @GetMapping(value = "/detail")
+    public ResultVO<OrderDTO> detail(@RequestParam("openid") String openid,@RequestParam("orderId") String orderId){
+        OrderDTO order = buyerService.findOrderOne(openid,orderId);
+        return ResultVOUtil.success(order);
+    }
+
 
     /**
-     * 创建订单
-     * @param orderDTO
+     * 取消订单
+     * @param openid
+     * @param orderId
      * @return
      */
+    @PostMapping(value = "/cancel")
+    public ResultVO<OrderDTO> cancel(@RequestParam("openid") String openid,@RequestParam("orderId") String orderId){
+        buyerService.cancelOrder(openid,orderId);
+        return ResultVOUtil.success();
+    }
 
     /**
-     * 创建订单
+     * 订单支付
      * @param orderDTO
      * @return
      */

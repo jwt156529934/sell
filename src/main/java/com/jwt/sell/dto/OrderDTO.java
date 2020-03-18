@@ -4,6 +4,7 @@ import com.jwt.sell.model.OrderDetail;
 import com.jwt.sell.model.OrderMaster;
 import lombok.Data;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -13,7 +14,9 @@ import java.util.List;
  * @date 2020/3/1621:51
  */
 @Data
+//@JsonInclude(JsonInclude.Include.NON_NULL)
 public class OrderDTO extends OrderMaster {
 
-    private List<OrderDetail> orderDetailList;
+//    @JsonIgnore
+    private List<OrderDetail> orderDetailList = new ArrayList<>();
 }
