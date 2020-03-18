@@ -7,7 +7,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @author wuli涛涛
  * @Title: SellApplication
  * @ProjectName sell
- * @Description: TODO
  * @date 2020/3/1516:58
  */
 @SpringBootApplication

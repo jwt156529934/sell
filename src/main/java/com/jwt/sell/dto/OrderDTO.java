@@ -10,7 +10,6 @@ import java.util.List;
  * @author wuli涛涛
  * @Title: OrderDTO
  * @ProjectName sell
- * @Description: TODO
  * @date 2020/3/1621:51
  */
 @Data
