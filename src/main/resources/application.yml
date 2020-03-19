@@ -5,12 +5,16 @@ spring:
   jpa:
     show-sql: true
 
+  jackson:
+    default-property-inclusion: non_null
+
 server:
   port: 8080
   context-path: /sell
 
 log:
   path: sell-log
+
 
 
 ---

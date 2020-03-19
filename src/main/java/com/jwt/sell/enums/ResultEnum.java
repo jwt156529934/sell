@@ -18,7 +18,8 @@ public enum ResultEnum implements CodeEnum {
     ORDER_UPDATE_FAIL(70,"订单更新失败"),
     ORDER_DETAIL_EMPTY(80,"订单更新失败"),
     ORDER_PAY_STATUS_ERROR(90,"订单支付状态不正确"),
-    CART_EMPTY(100,"购物车不能为空")
+    CART_EMPTY(100,"购物车不能为空"),
+    ORDER_OWNER_ERROR(101,"该订单不属于当前用户")
     ;
 
     private Integer code;
