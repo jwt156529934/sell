@@ -20,6 +20,7 @@ public class Swagger2Configuration {
                 .enable(true)
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("com.jwt.sell"))
+                //.apis(RequestHandlerSelectors.any())
                 .paths(PathSelectors.any())
                 .build();
     }

@@ -25,3 +25,12 @@ spring:
     username: root
     password: 123456
     url: jdbc:mysql://192.168.1.183/sell?useUnicode=true&characterEncoding=utf-8&useSSL=false
+
+---
+spring:
+  profiles: dev
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: 123456
+    url: jdbc:mysql://127.0.0.1/sell?useUnicode=true&characterEncoding=utf-8&useSSL=false
