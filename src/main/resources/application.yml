@@ -15,6 +15,9 @@ server:
 log:
   path: sell-log
 
+wechat:
+  mpAppId: wxe611008355d36f97
+  mpAppSecret: c3b5bacfc2d328b90917ca496e6d2959
 
 
 ---
