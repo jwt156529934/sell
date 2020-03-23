@@ -9,15 +9,17 @@ spring:
     default-property-inclusion: non_null
 
 server:
-  port: 8080
-#  context-path: /sell
+  port: 80
+  context-path: /sell
 
 log:
   path: sell-log
 
 wechat:
-  mpAppId: wxe611008355d36f97
-  mpAppSecret: c3b5bacfc2d328b90917ca496e6d2959
+#  mpAppId: wxe611008355d36f97
+  mpAppId: wx29e09e469625ece1
+  mpAppSecret: 3d2f74cfd1265e7f0cc8bf6e042e5569
+#  mpAppSecret: c3b5bacfc2d328b90917ca496e6d2959
 
 
 ---
