@@ -1,7 +1,11 @@
 package com.jwt.sell.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.jwt.sell.enums.OrderStatusEnum;
+import com.jwt.sell.enums.PayStatusEnum;
 import com.jwt.sell.model.OrderDetail;
 import com.jwt.sell.model.OrderMaster;
+import com.jwt.sell.utils.EnumUtil;
 import lombok.Data;
 
 import java.util.ArrayList;
@@ -19,4 +23,14 @@ public class OrderDTO extends OrderMaster {
 
 //    @JsonIgnore
     private List<OrderDetail> orderDetailList = new ArrayList<>();
+
+    @JsonIgnore
+    public OrderStatusEnum getOrderStatusEnum() {
+        return EnumUtil.getByCode(super.getOrderStatus(), OrderStatusEnum.class);
+    }
+
+    @JsonIgnore
+    public PayStatusEnum getPayStatusEnum() {
+        return EnumUtil.getByCode(super.getPayStatus(), PayStatusEnum.class);
+    }
 }

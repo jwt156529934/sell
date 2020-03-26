@@ -13,6 +13,7 @@ import com.jwt.sell.model.ProductInfo;
 import com.jwt.sell.repository.OrderDetailRepository;
 import com.jwt.sell.repository.OrderMasterRepository;
 import com.jwt.sell.service.OrderService;
+import com.jwt.sell.service.PayService;
 import com.jwt.sell.service.ProductInfoService;
 import com.jwt.sell.utils.KeyUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -44,6 +45,8 @@ public class OrderServiceImpl implements OrderService {
     private OrderDetailRepository orderDetailRepository;
     @Autowired
     private ProductInfoService productInfoService;
+    @Autowired
+    private PayService payService;
 
     /**
      * 创建订单
@@ -157,7 +160,7 @@ public class OrderServiceImpl implements OrderService {
         productInfoService.increaseStock(cartDTOList);
         //如果已支付需要退款
         if(orderDTO.getPayStatus().equals(PayStatusEnum.SUCCESS.getCode())){
-            //TODO
+            payService.refund(orderDTO);
         }
         return orderDTO;
     }
@@ -215,5 +218,13 @@ public class OrderServiceImpl implements OrderService {
             throw new SellException(ResultEnum.ORDER_UPDATE_FAIL);
         }
         return orderDTO;
+    }
+
+    @Override
+    public Page<OrderDTO> findList(Pageable pageable) {
+        Page<OrderMaster> orderMasterPage = orderMasterRepository.findAll(pageable);
+        List<OrderDTO> orderDTOList = OrderMaster2OrderDTOConverter.convert(orderMasterPage.getContent());
+        Page<OrderDTO> orderDTOPage = new PageImpl<OrderDTO>(orderDTOList,pageable,orderMasterPage.getTotalElements());
+        return orderDTOPage;
     }
 }

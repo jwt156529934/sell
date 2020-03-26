@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
  * @author wuli涛涛
  * @Title: BuyerServiceImpl
  * @ProjectName sell
- * @Description: TODO
  * @date 2020/3/1821:29
  */
 @Service
