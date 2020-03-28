@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="renderer" content="webkit">
+  <title>登录</title>
+</head>
+<body>
+请输入openID：<input type="text"  id="openid" value=""></input>
+<button type="submit" id="login" onclick="login()">
+  登录
+</button>
+</body>
+<script>
+  function login(){
+    var openid = document.getElementById("openid").value
+    window.location.href= "seller/login?openid="+openid
+  }
+</script>
+</html>
