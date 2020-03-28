@@ -15,6 +15,8 @@ import com.jwt.sell.repository.OrderMasterRepository;
 import com.jwt.sell.service.OrderService;
 import com.jwt.sell.service.PayService;
 import com.jwt.sell.service.ProductInfoService;
+import com.jwt.sell.service.PushMessageService;
+import com.jwt.sell.service.WebSocket;
 import com.jwt.sell.utils.KeyUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
@@ -47,6 +49,10 @@ public class OrderServiceImpl implements OrderService {
     private ProductInfoService productInfoService;
     @Autowired
     private PayService payService;
+    @Autowired
+    private PushMessageService pushMessageService;
+    @Autowired
+    private WebSocket webSocket;
 
     /**
      * 创建订单
@@ -89,6 +95,9 @@ public class OrderServiceImpl implements OrderService {
                                             .map(e -> new CartDTO(e.getProductId(), e.getProductQuantity()))
                                             .collect(Collectors.toList());
         productInfoService.decreaseStock(cartDTOList);
+
+        //发送websocket消息
+        webSocket.sendMessage(orderDTO.getOrderId());
         return orderDTO;
     }
 
@@ -187,6 +196,10 @@ public class OrderServiceImpl implements OrderService {
             log.error("【完结订单】 更新失败，orderId={},orderStatus={}",orderDTO.getOrderId(),orderDTO.getOrderStatus());
             throw new SellException(ResultEnum.ORDER_UPDATE_FAIL);
         }
+
+        //推送微信模版消息
+        pushMessageService.orderStatus(orderDTO);
+
         return orderDTO;
     }
 
