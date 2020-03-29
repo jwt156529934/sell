@@ -1,6 +1,7 @@
 package com.jwt.sell.exception;
 
 import com.jwt.sell.enums.ResultEnum;
+import lombok.Getter;
 
 /**
  * @author wuli涛涛
@@ -9,6 +10,7 @@ import com.jwt.sell.enums.ResultEnum;
  * @Description: 异常处理类
  * @date 2020/3/1622:18
  */
+@Getter
 public class SellException extends RuntimeException{
     private Integer code;
 

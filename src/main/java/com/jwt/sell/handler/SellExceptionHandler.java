@@ -1,10 +1,14 @@
 package com.jwt.sell.handler;
 
+import com.jwt.sell.VO.ResultVO;
 import com.jwt.sell.config.ProjectUrlConfig;
+import com.jwt.sell.exception.SellException;
 import com.jwt.sell.exception.SellerAuthorizeException;
+import com.jwt.sell.utils.ResultVOUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -27,5 +31,12 @@ public class SellExceptionHandler {
 //        .concat("?returnUrl=")
 //        .concat(projectUrlConfig.getSell())
 //        .concat("/sell/seller/login"));
+    }
+
+    @ExceptionHandler(value = SellException.class)
+    @ResponseBody
+//    @ResponseStatus(value = HttpStatus.FORBIDDEN) //返回HTTP状态码改变
+    public ResultVO handlerSelleException(SellException e) {
+        return ResultVOUtil.error(e.getCode(), e.getMessage());
     }
 }
